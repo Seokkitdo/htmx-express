@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- 헤드 섹션 내용 (메타 태그, 스타일시트 링크 등) -->
+  </head>
+  <body>
+    <h1>사용자 정보</h1>
+    <table>
+      <tr>
+        <th>이름</th>
+        <th>나이</th>
+        <th>역할</th>
+      </tr>
+      <% users.forEach(function(user) { %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.age %></td>
+        <td><%= user.role %></td>
+      </tr>
+      <% }); %>
+    </table>
+  </body>
+</html>
