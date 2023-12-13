@@ -1,23 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- 헤드 섹션 내용 (메타 태그, 스타일시트 링크 등) -->
+    <!-- Tailwind CSS 링크 추가 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <h1>사용자 정보</h1>
-    <table>
-      <tr>
-        <th>이름</th>
-        <th>나이</th>
-        <th>역할</th>
-      </tr>
-      <% users.forEach(function(user) { %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.age %></td>
-        <td><%= user.role %></td>
-      </tr>
-      <% }); %>
-    </table>
+  <body class="antialiased bg-gray-100">
+    <div class="p-8">
+      <div class="container mx-auto">
+        <h1 class="text-2xl font-semibold text-gray-900 mb-6">사용자 정보</h1>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-center bg-white border-collapse">
+            <thead>
+              <tr
+                class="text-md font-semibold tracking-wide text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
+              >
+                <th class="px-4 py-3">아이디</th>
+                <th class="px-4 py-3">이름</th>
+                <th class="px-4 py-3">나이</th>
+                <th class="px-4 py-3">역할</th>
+                <th class="px-4 py-3">수정</th>
+                <th class="px-4 py-3">삭제</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white" id="userList">
+              <% users.forEach(function(user) { %>
+              <tr class="text-gray-700" id="userRow-<%= user.id %>">
+                <td
+                  class="px-4 py-3 border-b border-gray-200 bg-gray-50 font-medium text-sm"
+                >
+                  <%= user.id %>
+                </td>
+                <td
+                  class="px-4 py-3 border-b border-gray-200 bg-gray-50 font-medium text-sm"
+                >
+                  <%= user.name %>
+                </td>
+                <td
+                  class="px-4 py-3 border-b border-gray-200 bg-gray-50 text-sm"
+                >
+                  <%= user.age %>
+                </td>
+                <td
+                  class="px-4 py-3 border-b border-gray-200 bg-gray-50 text-sm"
+                >
+                  <%= user.role %>
+                </td>
+                <td
+                  class="px-4 py-3 border-b border-gray-200 bg-gray-50 text-sm"
+                >
+                  <button
+                    hx-get="/dashboard/user/edit/<%= user.id %>"
+                    hx-trigger="click"
+                    hx-target="#userRow-<%= user.id %>"
+                    hx-swap="outerHTML"
+                    class="px-4 py-2 text-sm text-white bg-red-600 rounded hover:bg-red-500"
+                  >
+                    수정
+                  </button>
+                </td>
+                <td
+                  class="px-4 py-3 border-b border-gray-200 bg-gray-50 text-sm"
+                >
+                  <button
+                    hx-delete="/dashboard/user/<%= user.id %>"
+                    hx-trigger="click"
+                    hx-target="#userRow-<%= user.id %>"
+                    hx-swap="outerHTML"
+                    class="px-4 py-2 text-sm text-white bg-red-600 rounded hover:bg-red-500"
+                  >
+                    삭제
+                  </button>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
