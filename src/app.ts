@@ -64,6 +64,7 @@ app.delete("/dashboard/user/:userId", function (req, res) {
 
 app.get("/dashboard/user/edit/:userId", function (req, res) {
   const userId = req.params.userId;
+
   // const { name, age } = req.body; // express.urlencoded() 미들웨어 설정 필요
 
   // users = users.map((user) => {
@@ -78,20 +79,21 @@ app.get("/dashboard/user/edit/:userId", function (req, res) {
   res.render("partials/userEditRow", { user });
 });
 
-app.post(
+app.put(
   "/dashboard/user/update/:userId",
   function (req: Request, res: Response) {
     const userId = req.params.userId; // URL에서 사용자 ID를 가져옵니다.
-    const { name, age, role } = req.body; // form 데이터에서 이름, 나이, 역할을 가져옵니다.
 
-    // 사용자 배열을 업데이트합니다.
-    console.log(userId, name, age, role);
-    users = users.map((user) => {
-      if (user.id === Number(userId)) {
-        return { ...user, name, age, role }; // 역할(role)도 업데이트합니다.
-      }
-      return user;
-    });
+    console.log("body", req.body);
+    // const { name, age, role } = req.body; // form 데이터에서 이름, 나이, 역할을 가져옵니다.
+
+    // console.log(userId, name, age, role);
+    // users = users.map((user) => {
+    //   if (user.id === Number(userId)) {
+    //     return { ...user, name, age, role }; // 역할(role)도 업데이트합니다.
+    //   }
+    //   return user;
+    // });
 
     // 업데이트된 사용자를 찾습니다.
     const updatedUser = users.find((user) => user.id === Number(userId));

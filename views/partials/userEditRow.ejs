@@ -1,33 +1,31 @@
 <tr class="text-gray-700" id="userRow-<%= user.id %>">
-  <form
-    hx-post="/dashboard/user/update/<%= user.id %>"
-    hx-target="#userRow-<%= user.id %>"
-    hx-swap="outerHTML"
-  >
-    <td
-      class="px-4 py-3 border-b border-gray-200 bg-gray-50 font-medium text-sm"
-    >
-      <%= user.id %>
-    </td>
-    <td
-      class="px-4 py-3 border-b border-gray-200 bg-gray-50 font-medium text-sm"
-    >
-      <input type="text" value="<%= user.name %>" name="name" class="text-sm" />
-    </td>
-    <td class="px-4 py-3 border-b border-gray-200 bg-gray-50 text-sm">
-      <input type="text" value="<%= user.age %>" name="age" class="text-sm" />
-    </td>
-    <td class="px-4 py-3 border-b border-gray-200 bg-gray-50 text-sm">
-      <input type="text" value="<%= user.role %>" name="role" class="text-sm" />
-    </td>
+  <td class="px-4 py-3 border-b border-gray-200 bg-gray-50 font-medium text-sm">
+    <%= user.id %>
+  </td>
+  <td class="px-4 py-3 border-b border-gray-200 bg-gray-50 font-medium text-sm">
+    <input type="text" value="<%= user.name %>" name="name" class="text-sm" />
+  </td>
+  <td class="px-4 py-3 border-b border-gray-200 bg-gray-50 text-sm">
+    <input type="text" value="<%= user.age %>" name="age" class="text-sm" />
+  </td>
+  <td class="px-4 py-3 border-b border-gray-200 bg-gray-50 text-sm">
+    <input type="text" value="<%= user.role %>" name="role" class="text-sm" />
+  </td>
 
-    <td class="px-4 py-3 border-b border-gray-200 bg-gray-50 text-sm">
-      <button
-        type="submit"
-        class="px-4 py-2 text-sm text-white bg-green-600 rounded hover:bg-green-500"
-      >
-        저장
-      </button>
-    </td>
-  </form>
+  <td class="px-4 py-3 border-b border-gray-200 bg-gray-50 text-sm">
+    <button
+      class="px-4 py-2 text-sm text-white bg-green-600 rounded hover:bg-green-500"
+    >
+      취소
+    </button>
+    <button
+      type="submit"
+      class="px-4 py-2 text-sm text-white bg-green-600 rounded hover:bg-green-500"
+      hx-put="/dashboard/user/update/<%= user.id %>"
+      hx-include="closest tr"
+    >
+      저장
+    </button>
+  </td>
+  <td></td>
 </tr>
